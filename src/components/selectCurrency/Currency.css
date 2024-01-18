@@ -1,0 +1,20 @@
+.label{
+    right: 13% !important;
+    font-family: Roboto !important;
+    font-size: 12px!important;
+    font-weight: 400!important;
+    text-align: left!important;
+    color:white!important;
+    margin-bottom:4px!important;
+    margin-left:24px !important;
+    position:absolute!important;
+    top:-15px !important;
+}
+.method{
+  right: 30% !important
+}
+@media screen and (min-width: 1150px) and (max-width: 1320px) {
+    .label{
+      right: 8% !important
+    }
+  }

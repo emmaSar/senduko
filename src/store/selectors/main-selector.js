@@ -1,0 +1,10 @@
+export const countriesSelector = (state) => state.mainReducer.counties;
+export const countryFromSelector = (state) => state.mainReducer.countryFrom;
+export const countryToSelector = (state) => state.mainReducer.countryTo;
+export const currencyFromSelector = (state) => state.mainReducer.currencyFrom;
+export const currencyToSelector = (state) => state.mainReducer.currencyTo;
+export const currencyListSelector = (state) => state.mainReducer.currencyList;
+export const valueSelector = (state) => state.mainReducer.value;
+export const paymentSelector = (state) => state.mainReducer.payment;
+export const isSenderSelector = (state) => state.mainReducer.isSender;
+export const paymentListSelector = (state) => state.mainReducer.paymentList;

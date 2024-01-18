@@ -1,0 +1,139 @@
+
+.container-main {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+  }
+.leftBlock-main {
+    display: flex;
+    flex-direction: column
+  }
+.heading-main {
+    font-family: "Roboto";
+    font-size: 52px;
+    font-weight: 300;
+    color: #011A3F
+  }
+.heading1-main {
+    font-family: "Roboto";
+    font-size: 52px;
+    font-weight: 600;
+    text-align:center;
+    color: #644FE4
+  }
+.block-main {
+    height: 538px;
+    width: 80%;
+    background-size:contain;
+    text-align: center;
+  }
+.text-main {
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+    color: #011A3F;
+    margin-top: 36px;
+    margin-bottom: 36px;
+    opacity: 60%
+  }
+.textLink-main {
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #011A3F
+  }
+.rowContainer-main {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    position:relative;
+    margin: 0px 88px
+  }
+.button-main {
+  border-radius: 20px  !important;
+  text-transform: none  !important;
+  color: white  !important;
+  font-family: "Roboto"  !important;
+  font-size: 16px  !important;
+  font-weight: 600  !important;
+  border: 0px  !important;
+  background-color: #FFC737 !important;
+  width: 46% !important;
+  height: 48px !important;
+  margin-top: 38px!important; 
+  text-align: center;
+}
+.text-payment{
+font-family: Roboto;
+font-size: 18px;
+font-weight: 700;
+letter-spacing: -0.5px;
+text-align: center;
+color: white;
+margin-bottom: 15px;
+}
+.one{
+  margin-top: 88px;
+  margin-bottom: 33px;
+}
+@media screen and (min-width: 1150px) and (max-width: 1320px) {
+  .one{
+    margin-top: 118px;
+    margin-bottom: 33px;
+  }
+
+}
+@media screen and (max-width: 1150px) {
+  .container-main {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  .heading-main {
+    font-size: 28px;
+    text-align: center;
+  }
+  .heading1-main {
+    font-size: 28px;
+  }
+  .block-main{
+    background-color: #644FE4;
+    border-radius: 60px;
+    width: 100%;
+    margin-top: 40px;
+  }
+  .one{
+    margin: 36px 16px;
+  }
+  .rowContainer-main{
+    display: flex;
+    flex-direction: column;
+  }
+  .row-block{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    position:relative;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .button-main{
+    width: 92% !important;
+  }
+  .text-main{
+    text-align: center;
+  }
+  .textLink-main{
+    text-align: center;
+  }
+  .text-payment{
+    margin-right: 15px;
+  }
+  }
+
