@@ -42,7 +42,6 @@ export function Language(): JSX.Element {
     const checkValue=()=>{
         return optionValues.find((element:any)=>element.short_name===value)
     }
-console.log(value,"valueee")
     return (
         <div>
             <Select
@@ -59,7 +58,6 @@ console.log(value,"valueee")
                     );
                 }}
                 onChange={(event:any) => {
-                    console.log(event.target.value,"+++++++++++++")
                     setvalue(event.target.value);
                 }}
             >

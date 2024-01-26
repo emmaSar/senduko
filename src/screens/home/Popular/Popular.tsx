@@ -6,7 +6,7 @@ import { styles } from "./PopularStyle";
 function Popular() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1150px)");
+    const mediaQuery = window.matchMedia("(max-width: 1350px)");
     mediaQuery.addListener(handleMediaQueryChange);
     handleMediaQueryChange(mediaQuery);
 
@@ -50,7 +50,7 @@ function Popular() {
           }
         />
       </div>
-      <Button style={styles.button}>
+      <Button style={{...styles.button,width:isSmallScreen?'56%':'28%'}}>
         Больше статей
         <img src={ArrowUpRight} alt="right" style={styles.image} />
       </Button>

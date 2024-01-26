@@ -12,7 +12,13 @@ function CountryItem({
 }) {
   return (
     <div style={styles.container} onClick={onClick}>
-      <img src={image} alt={"country"} style={styles.image} />
+         <img
+                  alt={image}
+                  width={32}
+                  height={24}
+                  style={styles.image}
+                  src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${image}.svg`}
+                />
       <div style={styles.rightBlock}>
         <span style={styles.subTitle}>Как отправить деньги</span>
         <span style={styles.title}>из {country} в Украину</span>

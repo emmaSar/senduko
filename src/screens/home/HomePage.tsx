@@ -17,7 +17,7 @@ function HomePage() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1150px)");
+    const mediaQuery = window.matchMedia("(max-width: 1350px)");
     mediaQuery.addListener(handleMediaQueryChange);
     handleMediaQueryChange(mediaQuery);
 
@@ -38,7 +38,7 @@ function HomePage() {
       <Payments />
       {isSmallScreen && <TextComponent />}
       <Work />
-      <Why />
+     <Why />
       <div style={{ position:"relative" }}>
         <SliderComponent />
         {!isSmallScreen && (
@@ -53,7 +53,7 @@ function HomePage() {
       <Popular />
 
       <Imigration />
-      <Answers />
+       <Answers />
     </div>
   );
 }

@@ -26,6 +26,7 @@ function App() {
       }
     );
     const coutries = await response.json();
+    console.log("coutries",coutries)
     dispatch(setCountries(coutries[0]));
   };
   useEffect(() => {

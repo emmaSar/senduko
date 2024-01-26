@@ -44,7 +44,7 @@ function SelectCountry({
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1150px)");
+    const mediaQuery = window.matchMedia("(max-width: 1350px)");
     mediaQuery.addListener(handleMediaQueryChange);
     handleMediaQueryChange(mediaQuery);
 
@@ -73,7 +73,6 @@ function SelectCountry({
       >
         {Object.keys(list).map(
           (value: any, index: number) => {
-            console.log(list[value].name,"list[value].name")
             return (
               <MenuItem
                 value={value}

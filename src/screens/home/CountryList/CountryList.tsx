@@ -2,132 +2,15 @@ import React, { useEffect, useState } from "react";
 
 import { styles } from "./CountryListStyle";
 import CountryItem from "../../../components/countryItem/CountryItem";
+import { useSelector } from "react-redux";
+import { countriesSelector } from "../../../store/selectors/main-selector";
 function CountryList() {
-  const countryList = [
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
+  const list = useSelector(countriesSelector);
 
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-    {
-      image: "https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg",
-      country: "Германии",
-    },
-  ];
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1150px)");
+    const mediaQuery = window.matchMedia("(max-width: 1350px)");
     mediaQuery.addListener(handleMediaQueryChange);
     handleMediaQueryChange(mediaQuery);
 
@@ -157,11 +40,11 @@ function CountryList() {
         деньги в Украину с sendyko.com
       </span>
       <div style={styles.block}>
-        {countryList.map((item, index) => {
+        {Object.keys(list).map((item, index) => {
           return (
             <CountryItem
-              image={item.image}
-              country={item.country}
+              image={item}
+              country={list[item].name}
               onClick={() => {}}
               key={index}
             />

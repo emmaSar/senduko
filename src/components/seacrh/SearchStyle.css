@@ -26,7 +26,7 @@
 .noVisible{
   display: none;
 }
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1350px) {
   .search {
     margin-left: 37px;
     display: flex;

@@ -23,6 +23,7 @@ export const styles = {
   rowContainer: {
     display: "flex",
     justifyContent: "space-between",
+    overflowX:'scroll' as 'scroll',
   },
   button: {
     borderRadius: 20,
@@ -35,6 +36,7 @@ export const styles = {
     backgroundColor: " #7C4FE7",
     width: "28%",
     marginTop: 60,
+    height:48
   },
   image: { width: 24, height: 24, marginLeft: 24 },
 };

@@ -5,7 +5,9 @@ export const styles = {
     // justifyContent: "space-between",
     // alignItems: "center",
     marginTop: 34,
-    marginRight:50
+    marginRight:50,
+    width:'20%',
+    minWidth:250
   },
   image: {
     width: 36,

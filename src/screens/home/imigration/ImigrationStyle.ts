@@ -40,6 +40,8 @@ export const styles = {
   rowContainer:{
     display:'flex',
     justifyContent:'space-between',
+    overflowX:'scroll' as 'scroll',
+
   },
   firstBlock:{
     display:'flex',

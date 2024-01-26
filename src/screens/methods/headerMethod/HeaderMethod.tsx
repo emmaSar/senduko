@@ -54,7 +54,7 @@ function HeaderMethod() {
   const payment = useSelector(paymentSelector);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1150px)");
+    const mediaQuery = window.matchMedia("(max-width: 1350px)");
     mediaQuery.addListener(handleMediaQueryChange);
     handleMediaQueryChange(mediaQuery);
 
@@ -149,7 +149,7 @@ function HeaderMethod() {
             right="1.3%"
           />
           <div style={{ position: "relative", display: "flex" }}>
-            <div style={{ position: "absolute", top: -15, left: 24 }}>
+            <div style={{ position: "absolute", top: -15, left: 24,zIndex:1 }}>
               <ButtonGroupComponent
                 isSender={isSender}
                 setIsSender={(val) => dispatch(setIsSender(val))}
@@ -157,18 +157,26 @@ function HeaderMethod() {
             </div>
             <TextInput
               value={value}
-              currency={list[countryFrom]?.from_currency ?? []}
               setValue={(val) => dispatch(setValue(val))}
-              fromCurrency={currencyFrom}
-              setFromCurrency={(value) => dispatch(setCurrencyFrom(value))}
+              fromCurrency={isSender ? currencyFrom : currencyTo}
+              setFromCurrency={(value) => {
+                isSender
+                  ? dispatch(setCurrencyFrom(value))
+                  : dispatch(setCurrencyTo(value));
+              }}
+              currency={
+                isSender
+                  ? list[countryFrom]?.from_currency ?? []
+                  : list[countryFrom]?.to_currency ?? []
+              }
               width="55%"
               right="2.2%"
             />
             <SelectCurrency
-              label="получаете"
-              value={currencyTo}
-              setValue={(value) => dispatch(setCurrencyTo(value))}
-              currency={list[countryFrom]?.to_currency ?? []}
+          label={!isSender? 'отправьте': "получаете"}
+          value={isSender? currencyTo:currencyFrom}
+          setValue={(value) => {isSender? dispatch(setCurrencyTo(value)):dispatch(setCurrencyTo(value))}}
+          currency={isSender? list[countryFrom]?.to_currency ?? []: list[countryFrom]?.from_currency ?? []}
               isMethod={true}
               // width='31%'
             />
@@ -237,30 +245,30 @@ function HeaderMethod() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: "100%",
+            //  width: "100%",
+           
             }}
           >
             <CardPayment
               title="на карту"
-              price={paymentList[0].get_amount}
+              price={paymentList[0].payment_methoses_card}
               image={Card}
               isGood={true}
               fromCurrency={paymentList[0].from_currency}
+              isSelected={true}
             />
             <CardPayment
               title="на банковский счет"
-              price={paymentList[0].get_amount}
+              price={paymentList[0].payment_methoses_account}
               image={Layer}
               margin={true}
               fromCurrency={paymentList[0].from_currency}
-
             />
             <CardPayment
               title="Получение наличными"
-              price={paymentList[0].get_amount}
+              price={paymentList[0].payment_methoses_cash}
               image={Cash}
               fromCurrency={paymentList[0].from_currency}
-
             />
           </div>
         ) : (

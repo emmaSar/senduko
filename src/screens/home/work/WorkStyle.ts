@@ -14,10 +14,10 @@ export const styles = {
     flexDirection: "row" as "row",
     justifyContent: "space-between",
     alignItems: "center",
-    // width:'100%',
+    overflow:'scroll'    // width:'100%',
   },
   work: {
-    padding: "32px 20px",
+    padding: "12px 20px 32px 12px",
     width: "29.5%",
     backgroundColor: "#DFEAFA",
     borderRadius: 60,
@@ -35,7 +35,15 @@ export const styles = {
     height:100,
   },
   image:{
-    height:265,
-    width:'100%'
+    width:'117%',
+    marginLeft:-22,
+    marginBottom:24
+
+  },
+  image1:{
+    width:'105%',
+    marginTop:-35,
+    marginBottom:24,
+    marginLeft:-5
   }
 };

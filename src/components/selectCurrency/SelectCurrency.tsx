@@ -31,7 +31,6 @@ function SelectCurrency({
   label?: string;
   currency?:any,isMethod?:boolean
 }) {
-  console.log("isMethod",isMethod)
   const currencyArray: any = currency;
   const changeHandler: any = (value: any) => {
     setValue(value.target.value);

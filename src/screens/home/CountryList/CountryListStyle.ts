@@ -4,12 +4,12 @@ export const styles = {
   container: {
     margin: "120px 100px 0px 100px",
     textAlign: "center" as "center",
-    minWidth:1200
   },
   smallContainer:{
     margin: "60px 16px 0px 16px",
     textAlign: "center" as "center",
-    minWidth:1200
+  //  width:'100%'
+  //  minWidth:1200
   },
   header: {
     textAlign: "center" as "center",
@@ -39,10 +39,13 @@ export const styles = {
   },
   image: { width: 24, height: 24, marginLeft: 24 },
   block:{
-    display:'flex',
-    flexDirection:'row' as 'row',
-    flexWrap:'wrap' as 'wrap',
-    justifyContent:'space-between'
+    display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridGap: 20,
+  //   display:'flex',
+  //   flexDirection:'row' as 'row',
+  //  // flexWrap:'wrap' as 'wrap',
+  //   justifyContent:'space-between',
+    overflowX:'scroll' as 'scroll',
+
   },
   
 };

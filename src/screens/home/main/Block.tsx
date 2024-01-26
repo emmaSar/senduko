@@ -7,7 +7,7 @@ import { ReactComponent as Reorder } from "../../../assets/svgs/Reorder.svg";
 import ButtonGroupComponent from "../../../components/buttonGroup/ButtonGroup";
 import Background from "../../../assets/svgs/Background.svg";
 import { ReactComponent as Clear } from "../../../assets/svgs/Clear.svg";
-
+import Tag from '../../../assets/svgs/Tag.svg'
 import "./MainStyle.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,7 +16,6 @@ import {
   countryFromSelector,
   countryToSelector,
   currencyFromSelector,
-  currencyListSelector,
   currencyToSelector,
   isSenderSelector,
   paymentSelector,
@@ -32,13 +31,13 @@ import {
   setPaymentList,
   setValue,
 } from "../../../store/actions/main-action";
+// import useDeepSelector from "./useDeepSelector";
 
 function Block() {
   const dispatch = useDispatch();
   const list = useSelector(countriesSelector);
   const countryFrom = useSelector(countryFromSelector);
   const countryTo = useSelector(countryToSelector);
-  console.log("countryTo", countryTo);
   const currencyFrom = useSelector(currencyFromSelector);
   const currencyTo = useSelector(currencyToSelector);
   // const currencyList=useSelector(currencyListSelector);
@@ -46,9 +45,10 @@ function Block() {
   const isSender = useSelector(isSenderSelector);
   const payment = useSelector(paymentSelector);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isInfo, setIsInfo] = useState<any>(null);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1150px)");
+    const mediaQuery = window.matchMedia("(max-width: 1350px)");
     mediaQuery.addListener(handleMediaQueryChange);
     handleMediaQueryChange(mediaQuery);
 
@@ -74,7 +74,7 @@ function Block() {
           : payment === "банковский счет"
           ? "account"
           : "cash";
-          const action=isSender?'send':'receive';
+      const action = isSender ? "send" : "receive";
       const response = await fetch(
         `https://cors-anywhere.herokuapp.com/https://sport.pog-arm.org/public/get/calculation/?from_country=${countryFrom}&to_country=${countryTo}&from_currency=${currencyFrom}&to_currency=${currencyTo}&get_amount=${value}&payment_method=${payment_method}&action=${action}`,
         {
@@ -89,7 +89,6 @@ function Block() {
         }
       );
       const paymentList = await response.json();
-      console.log(paymentList, "paymentList");
       dispatch(setPaymentList(paymentList[0]));
     }
   };
@@ -147,57 +146,108 @@ function Block() {
         <TextInput
           value={value}
           setValue={(value) => dispatch(setValue(value))}
-          fromCurrency={currencyFrom}
-          setFromCurrency={(value) => dispatch(setCurrencyFrom(value))}
-          currency={list[countryFrom]?.from_currency ?? []}
+          fromCurrency={isSender ? currencyFrom : currencyTo}
+          setFromCurrency={(value) => {
+            isSender
+              ? dispatch(setCurrencyFrom(value))
+              : dispatch(setCurrencyTo(value));
+          }}
+          currency={
+            isSender
+              ? list[countryFrom]?.from_currency ?? []
+              : list[countryFrom]?.to_currency ?? []
+          }
         />
         <SelectCurrency
-          label="получаете"
-          value={currencyTo}
-          setValue={(value) => dispatch(setCurrencyTo(value))}
-          currency={list[countryFrom]?.to_currency ?? []}
+          label={!isSender ? "отправьте" : "получаете"}
+          value={isSender ? currencyTo : currencyFrom}
+          setValue={(value) => {
+            isSender
+              ? dispatch(setCurrencyTo(value))
+              : dispatch(setCurrencyTo(value));
+          }}
+          currency={
+            isSender
+              ? list[countryFrom]?.to_currency ?? []
+              : list[countryFrom]?.from_currency ?? []
+          }
         />
       </div>
       <div
         style={{
           marginTop: 30,
-          display: isSmallScreen ? "flex" : "block",
+          display:isSmallScreen?"flex": "block",
           marginLeft: isSmallScreen ? 16 : 0,
           alignItems: "center",
           justifyContent: "center",
+          position:'relative'
         }}
       >
         <span className="text-payment">Cпособ оплаты:</span>
+
         {isSmallScreen && (
-          <Chip
+          <>
+       {payment&&   <Chip
             label={payment}
-            style={styles.chip}
+            style={{...styles.chip}}
             variant={"default"}
             deleteIcon={<Clear />}
-            onDelete={() => {}}
-          />
+            onDelete={() => {dispatch(setPayment())}}
+          />}
+          <img src={Tag} alt="Tag" style={{cursor:'pointer'}} onClick={()=>{setIsInfo(true)}}/>
+          { isInfo&& <div className="info-window" style={{top:0}}>
+          {payments.map((item, index) => {
+              return  <Chip
+                  key={index}
+                  label={item}
+                  style={ {...styles.chip,backgroundColor:item===payment?'#644FE4':'white',marginBottom:5}}
+                  variant={"outlined"}
+                  onClick={() => {
+                    dispatch(setPayment(item));
+                    setIsInfo(false)
+                  }}
+                  deleteIcon={<Clear />}
+                
+                />
+              
+            })}
+           </div>}
+          </>
         )}
         {!isSmallScreen && (
           <div style={styles.payment}>
             {payments.map((item, index) => {
-              return (
+              return payment === item ? (
                 <Chip
                   key={index}
                   label={item}
-                  style={payment === item ? styles.chip : styles.chipOut}
-                  variant={payment === item ? "default" : "outlined"}
+                  style={styles.chip}
+                  variant={"outlined"}
                   onClick={() => {
                     dispatch(setPayment(item));
                   }}
                   deleteIcon={<Clear />}
-                  // onDelete={()=>{}}
+                  onDelete={() => {
+                    dispatch(setPayment());
+                  }}
+                />
+              ) : (
+                <Chip
+                  key={index}
+                  label={item}
+                  style={styles.chipOut}
+                  variant={"outlined"}
+                  onClick={() => {
+                    dispatch(setPayment(item));
+                  }}
+                  deleteIcon={<Clear />}
                 />
               );
             })}
           </div>
         )}
       </div>
-      <Link   to={value.length>0?"/methods":'/home'}>
+      <Link to={value.length > 0 ? "/methods" : "/home"}>
         <Button className={"button-main"} onClick={() => calculate()}>
           Сравнить
         </Button>

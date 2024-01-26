@@ -27,7 +27,7 @@
     font-weight: 600;
     color: white
   }
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1350px) {
   .container-footer{
     padding: 32px;
     flex-wrap: wrap;

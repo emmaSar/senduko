@@ -13,8 +13,17 @@
 .method{
   right: 30% !important
 }
-@media screen and (min-width: 1150px) and (max-width: 1320px) {
+@media screen and (min-width: 1350px) and (max-width: 1320px) {
     .label{
       right: 8% !important
+    }
+    .method{
+      right: 30% !important
+    }
+  }
+  @media screen and (max-width:1350px)  {
+
+    .method{
+      right: 10% !important
     }
   }

@@ -45,16 +45,30 @@
     border-radius: 60px;
     height: 510px
   }
-@media screen and (max-width: 1150px) {
+@media screen and (min-width: 710px) and (max-width:1350px) {
   .container-why {
     display: flex;
     flex-direction:column;
     margin-left: 16px;
     margin-right: 16px;
     text-align: center;
-    margin-bottom: 450px;
+    margin-bottom: 550px;
     align-items: center;
   }
+}
+@media screen and (max-width: 710px){
+  .container-why {
+    display: flex;
+    flex-direction:column;
+    margin-left: 16px;
+    margin-right: 16px;
+    text-align: center;
+    margin-bottom: 650px;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 1350px) {
+
   .block-why{
     text-align: center;
     width: 100%;
